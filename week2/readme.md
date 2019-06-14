@@ -18,3 +18,5 @@ A uname Returns a namedtuple() containing six attributes: system, node, release,
 
 Exercise 2
 "= =" has to be "=="
+
+Exercise 3
