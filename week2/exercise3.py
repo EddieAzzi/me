@@ -28,9 +28,9 @@ def fix_it(moves=True, should_move=True):
     if moves==should_move:
         return "No Problem"
     else:
-        if moves=True:
+        if moves == True:
             return "Duct Tape"
-        elif moves=False:
+        elif moves == False:
             return "WD-40"
 
 
@@ -45,7 +45,13 @@ def loops_1a():
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    return None
+    #loops_1a = []
+    #for x in range(10):
+    #    loops_1a.append("*")
+
+    #return loops_1a
+
+    return loops_1c(10, '*')
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -55,7 +61,11 @@ def loops_1c(number_of_items=5, symbol="#"):
     string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-    return None
+    loops_1c = []
+    for x in range(number_of_items):
+        loops_1c.append(symbol)
+
+    return loops_1c
 
 
 def loops_2():
@@ -76,7 +86,23 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    return None
+    #number_of_items = 10
+    #symbol = "*"
+    #list_of_ten_stars = []
+    #for x in range(10):
+    #    list_of_ten_stars.append("*")
+
+    #ret = []
+    #for x in range(10):
+    #   ret.append(list_of_ten_stars)
+
+    #list_of_ten_stars = loops_1a()
+    #ret = loops_1c(10, list_of_ten_stars)
+    
+    #ret = loops_1c(10,loops_1a())
+
+    return loops_1c(10,loops_1a())
+    
 
 
 def loops_3():
