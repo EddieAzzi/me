@@ -15,3 +15,6 @@ Exercise 1
 len = length
 the amount of elements in the list
 A uname Returns a namedtuple() containing six attributes: system, node, release, version, machine, and processor.
+
+Exercise 2
+"= =" has to be "=="
