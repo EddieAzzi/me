@@ -126,7 +126,18 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    return None
+    loops_3 = []
+
+    #inner_loops_3 = []
+    #for x in range(10):
+    #    inner_loops_3.append(str(x))
+
+    for y in range(10):
+        inner_loops_3 = []
+        for x in range(10):
+            inner_loops_3.append(str(y))
+        loops_3.append(inner_loops_3)
+    return loops_3
 
 
 def loops_4():
@@ -146,7 +157,16 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    return None
+    loops_ascending = []
+    for x in range(10):
+        loops_ascending.append(str(x))
+    
+    loops_4 = []
+    for y in range(10):
+        #for x in range(10):
+        loops_4.append(loops_ascending)
+        
+    return loops_4
 
 
 def loops_5():
@@ -173,7 +193,14 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    return None
+    loops_5 = []
+    for i in range(10):
+        innerloops_5 = []
+        for j in range(5):
+            innerloops_5.append(('(i' + str(i) + ", " + 'j' + str(j) + ')'))
+        loops_5.append(innerloops_5)
+        
+    return loops_5
 
 
 def loops_6():
@@ -196,7 +223,14 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    return None
+    loops_6 = []
+    for i in range(10):
+        inner_loops_6 = []
+        for j in range(i + 1):
+            inner_loops_6.append(str(j))
+        loops_6.append(inner_loops_6)
+    return loops_6
+
 
 
 def loops_7():
@@ -220,7 +254,24 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    return None
+    number_of_asterix = 1
+    loops_7 = []
+    for i in range(4, -1, -1):
+        inner_loops_7 = []
+        
+        for x in range (i):
+            inner_loops_7.append(' ')
+        
+        for j in range(number_of_asterix):
+            inner_loops_7.append('*')
+        number_of_asterix += 2
+
+        for x in range (i):
+             inner_loops_7.append(' ')
+
+        loops_7.append(inner_loops_7)
+    return loops_7
+  
 
 
 def lp(some_kind_of_list, exercise_name):
