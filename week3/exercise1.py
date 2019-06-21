@@ -12,7 +12,12 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
+    loop_ranger = []
+    while stop > start:
+        loop_ranger.append(int(start))
+        start = start + step
+    
+    return loop_ranger
 
 
 def lone_ranger(start, stop, step):
@@ -20,7 +25,12 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
+    lone_ranger = []
+    while stop > start:
+        lone_ranger.append(int(start))
+        start = start + step
+    
+    return lone_ranger
 
 
 def two_step_ranger(start, stop):
@@ -29,7 +39,15 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    step = 2
+
+    two_step_ranger = []
+    while stop > start:
+        two_step_ranger.append(int(start))
+        start = start + step
+    
+    return two_step_ranger
+   
 
 
 def stubborn_asker(low, high):
@@ -40,7 +58,34 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    number = random.randint(1, 10)
+    guess = input()
+
+        if guess < number:
+            print('Too low.')
+
+        if guess > number:
+            print('Too high.')    
+
+        if guess == number:
+            print('Nice.')
+return guess
+#-----
+    #hidden = random.randrange(1, 10)
+
+    #guess = int(raw_input("Guess please: "))
+
+    #if guess == hidden:
+        #print("Nice.")
+
+    #elif guess < hidden:
+            #print("Too low :(")
+
+            #else:
+                #print("Too high :(")
+
+
+    return 
 
 
 def not_number_rejector(message):
