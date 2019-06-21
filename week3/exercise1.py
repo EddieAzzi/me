@@ -58,35 +58,20 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    number = random.randint(1, 10)
-    guess = input()
+    lower = int(low)
+    higher = int(high)
+    bound = False
 
-        if guess < number:
-            print('Too low.')
-
-        if guess > number:
-            print('Too high.')    
-
-        if guess == number:
-            print('Nice.')
-return guess
-#-----
-    #hidden = random.randrange(1, 10)
-
-    #guess = int(raw_input("Guess please: "))
-
-    #if guess == hidden:
-        #print("Nice.")
-
-    #elif guess < hidden:
-            #print("Too low :(")
-
-            #else:
-                #print("Too high :(")
-
-
-    return 
-
+    while not bound:
+        guess = int(input())
+        if guess > higher:
+            print('Too High')
+        elif guess < lower:
+            print('Too Low')
+        else:
+            bound = True
+            print('Finally')
+    return guess 
 
 def not_number_rejector(message):
     """Ask for a number repeatedly until actually given one.
@@ -95,6 +80,7 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
+    
     return None
 
 
