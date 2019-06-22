@@ -60,16 +60,16 @@ def stubborn_asker(low, high):
     """
     lower = int(low)
     higher = int(high)
-    bound = False
+    is_inside_bounds = False
 
-    while not bound:
+    while not is_inside_bounds:
         guess = int(input())
         if guess > higher:
             print('Too High')
         elif guess < lower:
             print('Too Low')
         else:
-            bound = True
+            is_inside_bounds = True
             print('Finally')
     return guess 
 
