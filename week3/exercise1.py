@@ -90,6 +90,7 @@ def not_number_rejector(message):
             return answer
         except ValueError:
             print('not a number')
+           
     return answer
 
 def super_asker(low, high):
@@ -100,9 +101,21 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    
-    return None
 
+    lower = int(low)
+    higher = int(high)
+    is_inside_bounds = False
+
+    while not is_inside_bounds:
+        guess = not_number_rejector("Message")
+        if guess > higher:
+            print('Too High')
+        elif guess < lower:
+            print('Too Low')
+        else:
+            is_inside_bounds = True
+            print('Finally')
+    return guess 
 
 if __name__ == "__main__":
     # this section does a quick test on your results and prints them nicely.
