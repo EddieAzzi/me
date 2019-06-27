@@ -12,4 +12,5 @@ except, try, while,
         #print guess
         
         #increment tries
-        
+
+break = breaks the current command, exits the loop, skips to the 'return'

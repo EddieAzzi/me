@@ -36,7 +36,7 @@ def binary_search(low, high, actual_number):
         guess = int(lower + ((upper - lower)/2))
         if guess == actual_number:
             iscorrect = True
-            break
+            continue
         elif guess > actual_number:
             upper = guess
         elif guess < actual_number:
