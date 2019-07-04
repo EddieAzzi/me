@@ -28,11 +28,19 @@ def advancedGuessingGame():
 
     print("\nWelcome to the guessing game!")
     print("A number between _ and _ ?")
-    upperBound = input("Enter an upper bound: ")
-   
-    upperBound = int(upperBound)
-    lowerBound = input("Enter a lower bound: ")
-    lowerBound = int(lowerBound)
+
+    inputValid = False
+
+    while not inputValid:
+      upperBound = input("Enter an upper bound: ")
+      upperBound = int(upperBound)
+      lowerBound = input("Enter a lower bound: ")
+      lowerBound = int(lowerBound)
+
+
+
+      if lowerBound < upperBound:
+        inputValid = True
     print("OK then, a number between {} and {} ?".format(lowerBound, upperBound))
     actualNumber = random.randint(lowerBound, upperBound)
 
@@ -48,9 +56,7 @@ def advancedGuessingGame():
             guessedNumber = int(guessedNumber)
             anumber = True
           except ValueError:
-            print('not a number')
-        
-        #guessedNumber = int(input("Guess a number: "))
+            print('not a number kid') 
         
         print("You guessed {},".format(guessedNumber),)
         if guessedNumber == actualNumber:
