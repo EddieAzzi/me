@@ -32,12 +32,14 @@ def advancedGuessingGame():
     inputValid = False
 
     while not inputValid:
-      upperBound = input("Enter an upper bound: ")
-      upperBound = int(upperBound)
-      lowerBound = input("Enter a lower bound: ")
-      lowerBound = int(lowerBound)
-
-
+      try:
+        upperBound = input("Enter an upper bound: ")
+        upperBound = int(upperBound)
+        lowerBound = input("Enter a lower bound: ")
+        lowerBound = int(lowerBound)
+      except:
+        #print('numbers you FOOL!')
+        return
 
       if lowerBound < upperBound:
         inputValid = True
@@ -48,24 +50,24 @@ def advancedGuessingGame():
 
     while not guessed:
 
-        anumber = False
+      anumber = False
 
-        while not anumber:
-          try:
-            guessedNumber = str(input("Guess a number: "))
-            guessedNumber = int(guessedNumber)
-            anumber = True
-          except ValueError:
-            print('not a number kid') 
-        
-        print("You guessed {},".format(guessedNumber),)
-        if guessedNumber == actualNumber:
-            print("You got it!! It was {}".format(actualNumber))
-            guessed = True
-        elif guessedNumber < actualNumber:
-            print("Too small, try again :'(")
-        else:
-            print("Too big, try again :'(")
+      while not anumber:
+        try:
+          guessedNumber = str(input("Guess a number: "))
+          guessedNumber = int(guessedNumber)
+          anumber = True
+        except ValueError:
+          print('not a number you idiot') 
+      
+      print("You guessed {},".format(guessedNumber),)
+      if guessedNumber == actualNumber:
+          print("You got it!! It was {}".format(actualNumber))
+          guessed = True
+      elif guessedNumber < actualNumber:
+          print("Too small noob, try again you fool")
+      else:
+          print("Too big noob, try again you fool")
 
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
