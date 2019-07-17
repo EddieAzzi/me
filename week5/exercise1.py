@@ -14,7 +14,7 @@ Some functions will have directions as external comments, once you think you
 are on top of it, take these comments out. Others won't have comments and
 you'll need to figure out for yourself what to do.
 """
-
+import math
 
 # This is a terrible function. The rest of the functions in this file do a
 # much better job of what it's trying to do. Once you've has a little look,
@@ -45,9 +45,6 @@ def countdown(message, start, stop, completion_message):
     for i in range(start,stop,-1):
         print(message + str(i))
 
-
-    #print completion message
-
     print(completion_message)
 
 
@@ -61,7 +58,9 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
+    hyp = math.sqrt(base ** 2 + height ** 2)
+    print("Calculalte hyp: base, height = " + str(base) + " " + str(height) + " " + str(hyp))
+    return hyp
 
 
 def calculate_area(base, height):
@@ -84,7 +83,7 @@ def get_triangle_facts(base, height, units="mm"):
         "perimeter": None,
         "height": None,
         "base": None,
-        "hypotenuse": None,
+        "hypotenuse": calculate_hypotenuse(base, height),
         "aspect": None,
         "units": None,
     }
