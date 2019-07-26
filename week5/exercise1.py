@@ -59,33 +59,44 @@ def countdown(message, start, stop, completion_message):
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
     hyp = math.sqrt(base ** 2 + height ** 2)
-    print("Calculalte hyp: base, height = " + str(base) + " " + str(height) + " " + str(hyp))
+    #print("Calculalte hyp: base, height = " + str(base) + " " + str(height) + " " + str(hyp))
     return hyp
 
 
 def calculate_area(base, height):
-    pass
+    area = 0.5 * (base * height)
+    #print("area = " + str((base * height) / 2))
+    return area
 
 
 def calculate_perimeter(base, height):
-    pass
+    perimeter = base * height
+    return perimeter
 
 
 def calculate_aspect(base, height):
-    pass
+    #c = calculate_hypotenuse(base, height)
+    #s = 0.5 * (base + height + c)
+    #aspect = (base * height * c) / ((8) * (s - base) * (s - height) * (s - c))
+    if (base == height):
+        return "equal"
+    elif ( base < height):
+        return "tall"
+    else:
+        return "wide"
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
+        "area": calculate_area(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "height": height,
+        "base": base,
         "hypotenuse": calculate_hypotenuse(base, height),
-        "aspect": None,
-        "units": None,
+        "aspect": calculate_aspect(base, height),
+        "units": units,
     }
 
 
@@ -130,59 +141,88 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                   |____⋱
                   {base}"""
 
+    b = facts_dictionary.get("base")
+    h = facts_dictionary.get("height")
+    text = ""
+    aspect = ""
+    if (b == h):
+        text = equal
+        aspect = "equal"
+    elif ( b < h):
+        text = tall
+        aspect = "tall"
+    else:
+        text = wide
+        aspect = "wide"
+
     pattern = (
         "This triangle is {area}{units}²\n"
         "It has a perimeter of {perimeter}{units}\n"
-        "This is a {aspect} triangle.\n"
+        "This is a " + aspect + " triangle.\n"
     )
 
-    facts = pattern.format(**facts_dictionary)
+    facts = text.format(**facts_dictionary) + "\n" + pattern.format(**facts_dictionary)
+    return facts
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
     if return_diagram and return_dictionary:
-        return None
+        return {"diagram": tell_me_about_this_right_triangle(get_triangle_facts(base, height, units="mm")), "facts": get_triangle_facts(base, height, units="mm")}
     elif return_diagram:
-        return None
+        return tell_me_about_this_right_triangle(get_triangle_facts(base, height, units="mm"))
     elif return_dictionary:
-        return None
+        return get_triangle_facts(base, height, units="mm")
     else:
         print("You're an odd one, you don't want anything!")
 
-
 def wordy_pyramid(api_key):
-#    import requests
-#
-#    baseURL = (
-#        "http://api.wordnik.com/v4/words.json/randomWords?"
-#        "api_key={api_key}"
-#        "&minLength={length}"
-#        "&maxLength={length}"
-#        "&limit=1"
-#    )
-#    pyramid_list = []
-#    for i in range(3, 21, 2):
-#        url = baseURL.format(api_key="", length=i)
-#        r = requests.get(url)
-#        if r.status_code is 200:
-#            message = r.json()[0]["word"]
-#            pyramid_list.append(message)
-#        else:
-#            print("failed a request", r.status_code, i)
-#    for i in range(20, 3, -2):
-#        url = baseURL.format(api_key="", length=i)
-#        r = requests.get(url)
-#        if r.status_code is 200:
-#            message = r.json()[0]["word"]
-#            pyramid_list.append(message)
-#        else:
-#            print("failed a request", r.status_code, i)
-#    return pyramid_list
-    pass
+   import requests
+
+   baseURL = (
+       "http://api.wordnik.com/v4/words.json/randomWords?"
+       "api_key={api_key}"
+       "&minLength={length}"
+       "&maxLength={length}"
+       "&limit=1"
+   )
+   pyramid_list = []
+   for i in range(3, 21, 2):
+       url = baseURL.format(api_key=api_key, length=i)
+       #print(url)
+       r = requests.get(url)
+       if r.status_code is 200:
+           message = r.json()[0]["word"]
+           pyramid_list.append(message)
+       else:
+           print("failed a request", r.status_code, i)
+   for i in range(20, 3, -2):
+       url = baseURL.format(api_key=api_key, length=i)
+       r = requests.get(url)
+       if r.status_code is 200:
+           message = r.json()[0]["word"]
+           pyramid_list.append(message)
+       else:
+           print("failed a request", r.status_code, i)
+   return pyramid_list
+    #pass
 
 
 def get_a_word_of_length_n(length):
-    pass
+    import requests
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key=n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+        
+    url = baseURL.format(length=length)
+    r = requests.get(url)
+    if r.status_code is 200:
+        return r.json()[0]["word"]
+    else:
+        print("failed a request", r.status_code, length)
 
 
 def list_of_words_with_lengths(list_of_lengths):
@@ -190,5 +230,5 @@ def list_of_words_with_lengths(list_of_lengths):
 
 
 if __name__ == "__main__":
-    do_bunch_of_bad_things()
-    #wordy_pyramid("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5")
+    #do_bunch_of_bad_things()
+    wordy_pyramid("n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew")
