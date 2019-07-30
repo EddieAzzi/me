@@ -179,27 +179,24 @@ def wordy_pyramid(api_key):
    import requests
 
    baseURL = (
-       "http://api.wordnik.com/v4/words.json/randomWords?"
-       "api_key={api_key}"
-       "&minLength={length}"
-       "&maxLength={length}"
-       "&limit=1"
+       "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}" 
    )
    pyramid_list = []
    for i in range(3, 21, 2):
-       url = baseURL.format(api_key=api_key, length=i)
-       #print(url)
+       url = baseURL.format(length=i)
+       print(url)
        r = requests.get(url)
        if r.status_code is 200:
-           message = r.json()[0]["word"]
+           message = r.text
            pyramid_list.append(message)
        else:
            print("failed a request", r.status_code, i)
    for i in range(20, 3, -2):
-       url = baseURL.format(api_key=api_key, length=i)
+       url = baseURL.format(length=i)
        r = requests.get(url)
        if r.status_code is 200:
-           message = r.json()[0]["word"]
+           message = r.text
            pyramid_list.append(message)
        else:
            print("failed a request", r.status_code, i)
@@ -210,17 +207,20 @@ def wordy_pyramid(api_key):
 def get_a_word_of_length_n(length):
     import requests
     baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key=n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
+        "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}" 
+        # "http://api.wordnik.com/v4/words.json/randomWords?"
+        # "api_key=n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew"
+        # "&minLength={length}"
+        # "&maxLength={length}"
+        #"&limit=1"
     )
         
     url = baseURL.format(length=length)
+    print(url)
     r = requests.get(url)
     if r.status_code is 200:
-        return r.json()[0]["word"]
+        return r.text
     else:
         print("failed a request", r.status_code, length)
 
