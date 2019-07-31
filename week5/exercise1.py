@@ -16,37 +16,16 @@ you'll need to figure out for yourself what to do.
 """
 import math
 
-# This is a terrible function. The rest of the functions in this file do a
-# much better job of what it's trying to do. Once you've has a little look,
-# move on, and eventually delete this function. (And this comment!)
-def do_bunch_of_bad_things():
-    countdown("Getting ready to start in ", 9, 1, "Let's go!")
-
-    triangle = {"base": 3, "height": 4}
-    triangle["hypotenuse"] = triangle["base"] ** 2 + triangle["height"] ** 2
-    print("area = " + str((triangle["base"] * triangle["height"]) / 2))
-    print("side lengths are:")
-    print("base: {}".format(triangle["base"]))
-    print("height: {}".format(triangle["height"]))
-    print("hypotenuse: {}".format(triangle["hypotenuse"]))
-
-    another_hyp = 5 ** 2 + 6 ** 2
-    print(another_hyp)
-
-    yet_another_hyp = 40 ** 2 + 30 ** 2
-    print(yet_another_hyp)
-
-
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    #print message start - stop times
-
-    for i in range(start,stop,-1):
-        print(message + str(i))
-
+    countdown = []
+    for i in range(start,stop-1,-1):
+        print(message + " " + str(i))
+        countdown.append(message + " " + str(i))
     print(completion_message)
-
+    countdown.append(completion_message)
+    return countdown
 
 # TRIANGLES
 
@@ -70,7 +49,8 @@ def calculate_area(base, height):
 
 
 def calculate_perimeter(base, height):
-    perimeter = base * height
+    hyp = calculate_hypotenuse(base, height)
+    perimeter = base + height + hyp
     return perimeter
 
 
@@ -208,10 +188,16 @@ def get_a_word_of_length_n(length):
         print("failed a request", r.status_code, length)
 
 
-def list_of_words_with_lengths(list_of_lengths):
-    pass
-
+def list_of_words_with_lengths(list_of_lengths):    
+    word_list = []
+    for i in list_of_lengths:
+        word = get_a_word_of_length_n(i)
+        word_list.append(word)
+    return word_list
 
 if __name__ == "__main__":
     #do_bunch_of_bad_things()
-    wordy_pyramid("n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew")
+    wlist = wordy_pyramid("n8o442zwoedg02xlpw8bqb0d9zz2sqz6nl03g4otebnjabpew")
+    for word in wlist:
+        print(word)
+
