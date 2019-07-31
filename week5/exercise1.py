@@ -201,7 +201,6 @@ def get_a_word_of_length_n(length):
     )
         
     url = baseURL.format(length=length)
-    print(url)
     r = requests.get(url)
     if r.status_code is 200:
         return r.text
