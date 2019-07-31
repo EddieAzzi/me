@@ -36,7 +36,7 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    return {"lastName": data["results"][0]["name"]["last"], "password": data["results"][0]["login"]["password"], "postcodePlusID": int(data["results"][0]["location"]["postcode"]) + int(data["results"][0]["id"]["value"])}
 
 
 def wordy_pyramid():
@@ -74,8 +74,29 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+    pyramid_list = []
+    for i in range(3, 21, 2):
+        word = get_a_word_of_length_n(i)
+        pyramid_list.append(word)
+    for i in range(20, 3, -2):
+        word = get_a_word_of_length_n(i)
+        pyramid_list.append(word)
+    return pyramid_list
 
+
+def get_a_word_of_length_n(length):
+    import requests
+    baseURL = (
+        "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}"
+    ) 
+    
+    url = baseURL.format(length=length)
+    r = requests.get(url)
+    if r.status_code is 200:
+        return r.text
+    else:
+        print("failed a request", r.status_code, length)
 
 def wunderground():
     """Find the weather station for Sydney.
