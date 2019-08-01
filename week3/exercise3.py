@@ -61,6 +61,10 @@ def advancedGuessingGame():
           print('not a number you idiot') 
       
       print("You guessed {},".format(guessedNumber),)
+      # if guessedNumber < lowerBound:
+      #   print("Out of Bounds")
+      # elif guessedNumber > upperBound:
+      #   print("Out of Bounds!")
       if guessedNumber == actualNumber:
           print("You got it!! It was {}".format(actualNumber))
           guessed = True
