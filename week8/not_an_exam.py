@@ -108,6 +108,24 @@ def make_filler_text_dictionary():
     TIP: you'll need the requests library
     """
 
+     baseURL = (
+        "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}" 
+    )
+        
+    url = baseURL.format(length=length)
+    r = requests.get(url)
+    if r.status_code is 200:
+        return r.text
+    else:
+        print("failed a request", r.status_code, length)
+
+    for i in range(3, 8):
+        word = get_a_word_of_length_n(i)
+        word_list.append(word)
+    return word_list
+
+
     import requests
 
     return {}
