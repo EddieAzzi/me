@@ -68,15 +68,19 @@ def pet_filter(letter="a"):
 
 
 def best_letter_for_pets():
-    """Return the letter that is present at least once in the most pet names.
-    Reusing the pet_filter, find the letter that gives the longest list of pets
-    TIP: return just a letter, not the list of animals.
-    """
     import string
 
     the_alphabet = string.ascii_lowercase
+    count = 0
 
-    return ""
+    for i in the_alphabet:
+        number = len(pet_filter(letter = i))
+        if number > count:
+            letter_pets = i
+            count = number
+    return letter_pets
+
+    #return ""
 
 
 def make_filler_text_dictionary():
