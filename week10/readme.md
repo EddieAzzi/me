@@ -20,6 +20,8 @@ my_odd_list = [randint(0,100) for _ in range(1000)]
 
 max(my_odd_list)
 
+data(list max)
+
 min(my_old_list)
 
 list(zip(range(len(pets)), pets))
